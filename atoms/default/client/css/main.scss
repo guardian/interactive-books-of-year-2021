@@ -2,18 +2,244 @@
 // @import "enhanced_fonts";
 @import "mq";
 @import "palette";
-// @import "enhancer";
+@import "enhancer";
 // gu_grid pulls the css for gs-container and content__main-column
 // @import "gu_grid";
 
 .interactive-atom {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 // for apps adds extra padding. Needed to make dark mode work
-.ios, .android {
-    .interactive-atom {
-        padding: 8px;
+.ios,
+.android {
+  .interactive-atom {
+    padding: 8px;
+  }
+}
+
+$headlineColor: #0c1544;
+$buttonColor: #0c1544;
+$buttonHoverColor: #03795f;
+$subHeadColor: #fff5ce;
+
+.content--interactive {
+  &::before {
+    content: "";
+    height: calc(100vh - 200px);
+    width: 100%;
+    display: block;
+    background-image: url("https://media.guim.co.uk/70b397b28affe12fc3477a1b79b834479f68736f/130_157_4739_2843/2000.jpg");
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .content__labels {
+    display: none;
+  }
+  .meta__social {
+    svg {
+      path {
+        fill: $headlineColor;
+      }
     }
+    ul li span:hover {
+      background-color: $headlineColor;
+      border: 1px solid $headlineColor;
+      svg {
+        path {
+          fill: $subHeadColor;
+        }
+      }
+    }
+  }
+  [data-gu-name="headline"] {
+    margin-top: -104px;
+    @include mq(tablet) {
+      margin-top: -53px;
+    }
+  }
+  .content__headline {
+    font-family: $f-titlepiece;
+    font-size: 44px;
+    line-height: 110%;
+    @include mq(tablet) {
+      line-height: 100%;
+    }
+    color: $subHeadColor;
+    background-color: $headlineColor;
+    position: relative;
+    white-space: pre-wrap;
+    padding-bottom: 4px;
+    padding-right: 10px;
+    box-shadow: -10px 0 0 $headlineColor;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    display: inline;
+
+    margin-top: calc(100vh - 200px);
+  }
+  .content__main-column--interactive {
+    .section-break + p {
+      em {
+        font-family: $f-headline-full;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 115%;
+        font-style: normal;
+      }
+    }
+    .element-atom {
+      padding-bottom: 16px;
+    }
+
+    .section-break {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      height: 200px;
+      color: $subHeadColor;
+      background-color: $headlineColor;
+      overflow: hidden;
+
+      max-width: 630px;
+      @include mq(leftCol) {
+        margin-left: 150px;
+      }
+      @include mq(wide) {
+        margin-left: 230px;
+      }
+
+      .section-title {
+        font-family: $f-titlepiece;
+        font-size: 32px;
+        position: absolute;
+        top: 0px;
+        left: 10px;
+        padding-top: 4px;
+      }
+
+      .element-inline,
+      .element-thumbnail {
+        height: 100px;
+        width: auto;
+        margin-bottom: 4px;
+        margin-right: 4px;
+        figcaption {
+          display: none;
+        }
+        div {
+          height: 100px;
+          width: auto;
+          img {
+            height: 100px;
+            width: auto;
+          }
+        }
+      }
+    }
+    .illustration-wrapper {
+      // width: 40%;
+      height: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+    .cover-wrapper {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 60%;
+      @include mq(phablet) {
+        width: 34%;
+      }
+
+      figure {
+        &:nth-child(1) {
+          transform: translateY(-70px);
+        }
+        &:nth-child(4) {
+          transform: translateY(-70px);
+        }
+        &:nth-child(7) {
+          transform: translateY(-70px);
+        }
+        &:nth-child(2) {
+          transform: translateY(-25px);
+        }
+        &:nth-child(5) {
+          transform: translateY(-25px);
+        }
+        &:nth-child(8) {
+          transform: translateY(-25px);
+        }
+        &:nth-child(3) {
+          transform: translateY(-70px);
+        }
+        &:nth-child(6) {
+          transform: translateY(-70px);
+        }
+        &:nth-child(9) {
+          transform: translateY(-70px);
+        }
+      }
+    }
+
+    blockquote {
+      color: #121212;
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      width: max-content;
+      font-style: normal;
+      margin: 0;
+      margin-bottom: 20px;
+
+      max-width: 620px;
+      @include mq(leftCol) {
+        margin-left: 160px;
+      }
+      @include mq(wide) {
+        margin-left: 240px;
+      }
+      p {
+        line-height: 135%;
+      }
+      a {
+        border-bottom: none;
+        font-weight: 700;
+        color: #121212;
+        transition: color 0.3s ease;
+      }
+      .arrow {
+        padding: 20px;
+        background-color: $buttonColor;
+        border-radius: 50%;
+        display: flex;
+        margin-right: 8px;
+        transition: background-color 0.3s ease;
+        svg {
+          transition: transform 0.3s ease;
+          path {
+            //   fill: red;
+          }
+        }
+      }
+      &:hover {
+        cursor: pointer;
+        .arrow {
+          background-color: $buttonHoverColor;
+          svg {
+            transform: scale(1.1);
+          }
+        }
+        a {
+          color: $buttonHoverColor;
+          border: none;
+        }
+      }
+    }
+  }
 }
